@@ -3,11 +3,27 @@
 import { IgApiClient } from "instagram-private-api";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { coolMessages } from "./utils";
+import { createClient } from 'redis';
 
 const ig = new IgApiClient();
 const INSTAGRAM_USERNAME = process.env.IG_USERNAME as string;
 const INSTAGRAM_PASSWORD = process.env.IG_PASSWORD as string;
-const SESSION_PATH = "./session.json";
+
+// Initialize Redis client
+const redis = createClient({
+    username: 'default',
+    password: 'wPrrwbJ2D0QKPFKepNr8UODZ5qx6L1KE',
+    socket: {
+        host: 'redis-14692.c264.ap-south-1-1.ec2.redns.redis-cloud.com',
+        port: 14692
+    }
+});
+
+// Handle Redis connection errors
+redis.on('error', err => console.error('Redis Client Error', err));
+
+// Connect to Redis
+redis.connect().catch(console.error);
 
 // Keep track of processed messages to avoid duplicates
 const processedMessageIds = new Set<string>();
@@ -15,12 +31,15 @@ const processedMessageIds = new Set<string>();
 // Initialize Instagram client
 ig.state.generateDevice(INSTAGRAM_USERNAME);
 
-// Login Function with session management
+// Login Function with Redis session management
 async function loginToInstagram() {
   try {
-    if (existsSync(SESSION_PATH)) {
-      const savedSession = JSON.parse(readFileSync(SESSION_PATH, "utf8"));
-      await ig.state.deserialize(savedSession);
+    // Try to get existing session from Redis
+    const savedSession = await redis.get('instagram_session');
+    
+    if (savedSession) {
+      const sessionData = JSON.parse(savedSession);
+      await ig.state.deserialize(sessionData);
       
       // Verify session is still valid
       try {
@@ -35,7 +54,10 @@ async function loginToInstagram() {
     await ig.account.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD);
 
     const session = await ig.state.serialize();
-    writeFileSync(SESSION_PATH, JSON.stringify(session));
+    // Store session in Redis with an expiry of 7 days
+    await redis.set('instagram_session', JSON.stringify(session), {
+      EX: 604800 // 7 days in seconds
+    });
     
     return true;
   } catch (error) {
@@ -125,6 +147,8 @@ async function sendDM(username: string, message: string) {
 export async function handleAutoReply() {
   try {
     const messages = await checkForNewMessages();
+    console.log("checking for messages");
+    
     const results = [];
 
     for (const msg of messages) {

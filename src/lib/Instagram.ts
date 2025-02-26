@@ -1,9 +1,9 @@
 "use server";
 
 import { IgApiClient } from "instagram-private-api";
-import { existsSync, readFileSync, writeFileSync } from "fs";
+
 import { coolMessages } from "./utils";
-import { createClient } from 'redis';
+import { createClient } from "redis";
 
 const ig = new IgApiClient();
 const INSTAGRAM_USERNAME = process.env.IG_USERNAME as string;
@@ -11,16 +11,16 @@ const INSTAGRAM_PASSWORD = process.env.IG_PASSWORD as string;
 
 // Initialize Redis client
 const redis = createClient({
-    username: 'default',
-    password: 'wPrrwbJ2D0QKPFKepNr8UODZ5qx6L1KE',
-    socket: {
-        host: 'redis-14692.c264.ap-south-1-1.ec2.redns.redis-cloud.com',
-        port: 14692
-    }
+  username: "default",
+  password: process.env.REDIS_PASSWORD,
+  socket: {
+    host: "redis-14692.c264.ap-south-1-1.ec2.redns.redis-cloud.com",
+    port: 14692,
+  },
 });
 
 // Handle Redis connection errors
-redis.on('error', err => console.error('Redis Client Error', err));
+redis.on("error", (err) => console.error("Redis Client Error", err));
 
 // Connect to Redis
 redis.connect().catch(console.error);
@@ -35,12 +35,12 @@ ig.state.generateDevice(INSTAGRAM_USERNAME);
 async function loginToInstagram() {
   try {
     // Try to get existing session from Redis
-    const savedSession = await redis.get('instagram_session');
-    
+    const savedSession = await redis.get("instagram_session");
+
     if (savedSession) {
       const sessionData = JSON.parse(savedSession);
       await ig.state.deserialize(sessionData);
-      
+
       // Verify session is still valid
       try {
         await ig.user.info(ig.state.cookieUserId);
@@ -55,10 +55,10 @@ async function loginToInstagram() {
 
     const session = await ig.state.serialize();
     // Store session in Redis with an expiry of 7 days
-    await redis.set('instagram_session', JSON.stringify(session), {
-      EX: 604800 // 7 days in seconds
+    await redis.set("instagram_session", JSON.stringify(session), {
+      EX: 604800, // 7 days in seconds
     });
-    
+
     return true;
   } catch (error) {
     if (error instanceof Error) {
@@ -83,24 +83,26 @@ async function checkForNewMessages() {
     const thirtySecondsAgo = currentTime - 60000; // 60 seconds window
 
     const unreadMessages = threads
-      .filter(thread => 
-        thread.last_permanent_item.item_type === "clip" && 
-        Number(thread.last_permanent_item.timestamp) / 1000 >= thirtySecondsAgo &&
-        !processedMessageIds.has(thread.last_permanent_item.item_id)
+      .filter(
+        (thread) =>
+          thread.last_permanent_item.item_type === "clip" &&
+          Number(thread.last_permanent_item.timestamp) / 1000 >=
+            thirtySecondsAgo &&
+          !processedMessageIds.has(thread.last_permanent_item.item_id)
       )
-      .map(thread => ({
+      .map((thread) => ({
         threadId: thread.thread_id,
         username: thread.users[0].username,
         messageId: thread.last_permanent_item.item_id,
       }));
-
+   
     // Add to processed set
-    unreadMessages.forEach(msg => processedMessageIds.add(msg.messageId));
-    
+    unreadMessages.forEach((msg) => processedMessageIds.add(msg.messageId));
+
     // Keep set size manageable
     if (processedMessageIds.size > 1000) {
       const toRemove = [...processedMessageIds].slice(0, 500);
-      toRemove.forEach(id => processedMessageIds.delete(id));
+      toRemove.forEach((id) => processedMessageIds.delete(id));
     }
 
     return unreadMessages;
@@ -130,14 +132,14 @@ async function sendDM(username: string, message: string) {
       return {
         success: false,
         message: "Failed to send DM",
-        error:error.message,
+        error: error.message,
       };
     } else {
       console.error("Unknown error:", error);
       return {
         success: false,
         message: "Failed to send DM",
-        error:error,
+        error: error,
       };
     }
   }
@@ -148,23 +150,26 @@ export async function handleAutoReply() {
   try {
     const messages = await checkForNewMessages();
     console.log("checking for messages");
-    
+
     const results = [];
 
     for (const msg of messages) {
       console.log(`📩 New reel from @${msg.username}`);
-      
+
       // Select random funny reply
-      const funnyReply = coolMessages[Math.floor(Math.random() * coolMessages.length)];
+      const funnyReply =
+        coolMessages[Math.floor(Math.random() * coolMessages.length)];
       const result = await sendDM(msg.username, funnyReply);
-      
+
       results.push({
         username: msg.username,
         status: result.success ? "sent" : "failed",
         message: result.message,
       });
 
-      console.log(`${result.success ? "✅" : "❌"} Auto-replied to @${msg.username}`);
+      console.log(
+        `${result.success ? "✅" : "❌"} Auto-replied to @${msg.username}`
+      );
     }
 
     return {
@@ -178,6 +183,5 @@ export async function handleAutoReply() {
     } else {
       console.error("Unknown error:", error);
     }
-   ;
   }
 }

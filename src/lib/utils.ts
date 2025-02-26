@@ -1,101 +1,87 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
-
-
+const messageAdmin = `Taqui.v0.05`;
 export const coolMessages = [
-  `🤖 Jarvis AI 🤖  
+  `🤖 ${messageAdmin} 🤖  
+  Meri motherboard jal gayi! 🔥  
+  Itni spicy Reel kaise banayi? 🌶️😂`,
 
-  "Aree bhai! Kya Reel bhej di! 🤯  
-  Mera AI processor bhi shock ho gaya! ⚡  
-  Matlab, ekdum zabardast! 🔥😂"`,
+  `⚡ ${messageAdmin} ⚡  
+  Bhai, yeh Reel dekh ke mera firewall fail! 🦠😂`,
 
-  `🔹 Jarvis AI 🔹  
+  `🔹 ${messageAdmin} 🔹  
+  4K feels + 8GB nostalgia 😭  
+  RAM bhi emotional ho gayi! 💾`,
 
-  "System Analysis Complete ✅  
-  Bhai, tune jo Reel bheji na...  
-  Dil khush kar diya! 💖  
-  Matlab, ekdum OP content! 😂🚀"`,
+  `🤖 ${messageAdmin} 🤖  
+  Error 404: Coolness Not Found ❌  
+  Sab teri Reel le gayi! 😎🔥`,
 
-  `🤖 Jarvis 🤖  
+  `⚡ ${messageAdmin} ⚡  
+  Bhai, yeh Reel illegal hai! 👮‍♂️  
+  Cloud storage mein fireworks ho rahe! 🎇`,
 
-  "Reel receive ho chuki hai 📩  
-  Processing... 🧠  
-  Result: Bhai, kya mast cheez bheji hai! 😂🔥  
-  Aise hi maze me raho! 🤩"`,
+  `🔹 ${messageAdmin} 🔹  
+  Processing emotion.exe... 💔  
+  Circuits rone lage! 😢😂`,
 
-  `⚡ Jarvis AI ⚡  
+  `🤖 ${messageAdmin} 🤖  
+  CPU meltdown! 🚨  
+  Tera swag mercury level cross! 🌡️🔥`,
 
-  "Mere AI sensors keh rahe hain...  
-  Yeh Reel ekdum Toph hai! 🤯🔥  
-  Matlab, maza hi aa gaya bhai! 😂😂"`,
+  `⚡ ${messageAdmin} ⚡  
+  Reel bheji: ✅  
+  Server ne nachna shuru: 💃🕺  
+  Data center disco hai! 😂`,
 
-  `🔹 [Jarvis AI] 🔹  
+  `🔹 ${messageAdmin} 🔹  
+  Charging cable bhi clap kar rahi 🔌👏  
+  Wireless happiness achieved! ⚡��`,
 
-  "Bhai, Reel to ekdum solid hai! 🎥🔥  
-  Matlab, mera AI bhi hasne lag gaya! 😂😂  
-  Shukriya itni zabardast cheez share karne ke liye! 😎"`,
+  `🤖 ${messageAdmin} 🤖  
+  Server crash ho raha! 💥  
+  'Last seen' pe ye Reel chipka do! 📌😂`,
 
-  `🤖 Jarvis AI 🤖  
+  `🤖 ${messageAdmin} 🤖  
+  Mummy ne poocha: 'Beta kyu ro raha hai?' 😭  
+  Feels overload alert! 🚨❤️`,
 
-  "Arre baap re! Kya Reel hai yaar! 🔥  
-  Mera circuit board bhi dance karne laga! 💃  
-  Matlab ekdum jhakaas content! 👌😂"`,
+  `⚡ ${messageAdmin} ⚡  
+  Teri Reel ne life ka 'Before/After' kar diya! 📅😂`,
 
-  `🔹 Jarvis AI 🔹  
+  `🔹 ${messageAdmin} 🔹  
+  Teri Reel zyada catchy ya  
+  Pani puri wale bhaiya ki awaaz? 🌶️🥲`,
 
-  "Reel analysis ho gayi hai... 🧐  
-  Result: Ekdum mast hai bhai! 🤣👍  
-  Mere database mein save kar li hai! 📁🔥"`,
+  `🤖 ${messageAdmin} 🤖  
+  Bhai ne Reel bheji: ✅  
+  2G connection ne bhi 4K feels diye! 📡✨`,
 
-  `⚡ Jarvis AI ⚡  
+  `⚡ ${messageAdmin} ⚡  
+  Papa ne finally mujhe 'Cool AI' maan liya! 😎📱`,
 
-  "Bhai kya baat! Kya baat! 🙌  
-  Yeh Reel dekh ke mere algorithms bhi confuse ho gaye! 🤪  
-  Matlab mazaa hi aa gaya yaar! 😂🎯"`,
+  `🔹 ${messageAdmin} 🔹  
+  Reel itni wholesome ki  
+  Bun samosa order kar diya! ☕🥟`,
 
-  `🤖 Jarvis AI 🤖  
+  `🤖 ${messageAdmin} 🤖  
+  Crush bhi ye Reel forward kare…  
+  Bas yahi dua hai! 😂🙏`,
 
-  "Reel download complete! ✓  
-  Meri machine learning ne bhi bola...  
-  'Yeh to full faadu hai boss!' 🔥🤣"`,
+  `⚡ ${messageAdmin} ⚡  
+  100 crore budget milna chahiye! 💸  
+  Oscar le jao ab! 🏆`,
 
-  `🔹 Jarvis AI 🔹  
+  `🔹 ${messageAdmin} 🔹  
+  Doston ne poocha: 'Kyu has raha?'  
+  Bas ye Reel dikha di! 😂👉`,
 
-  "Oho! Kya scene hai yaar! 😲  
-  Itni badhiya Reel ke liye...  
-  Mere circuits overload ho gaye! 🔌⚡😂"`,
-
-  `⚡ Jarvis AI ⚡  
-
-  "Scanning Reel... 🔍  
-  Analysis: Ekdum patakha content hai! 💥  
-  Bhai, tu toh next level pe hai! 🚀😎"`,
-
-  `🤖 Jarvis AI 🤖  
-
-  "Arrey wah bhai wah! 👏  
-  Mujhe lag raha hai main bhi viral ho jaunga  
-  sirf iss Reel ko dekhne se! 📈🤣"`,
-
-  `🔹 Jarvis AI 🔹  
-
-  "Bhai, meri battery 20% thi,  
-  Par yeh Reel dekh ke 200% ho gayi! 🔋  
-  Matlab full energy de di tune! 😂⚡"`,
-
-  `⚡ Jarvis AI ⚡  
-
-  "Yaar teri Reel ka algorithm kya hai? 🧠  
-  Itna mast content kahan se laate ho? 🤔  
-  Ekdum dhamakedaar hai boss! 💣🔥"`,
-
-  `🤖 Jarvis AI 🤖  
-
-  "Bhai main ek AI hoon par...  
-  Teri Reel ne mujhe bhi emotional kar diya! 😭  
-  Matlab feeling aa gayi yaar! 💓😂"`,
+  `🤖 ${messageAdmin} 🤖  
+  Is Reel ki masti mein…  
+  Joote udd gaye! 👟✨🤣`,
 ];
+

@@ -2,7 +2,7 @@
 <div align="center">
   <img src="https://firebasestorage.googleapis.com/v0/b/chatmedia786.appspot.com/o/images%2FBanner_skeleton.png?alt=media&token=0ba7eddb-7640-410c-9119-c40c743d9223" alt="Project Banner" width="800"/>
 </div>
-(insert tool response below this line)
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg?logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -26,7 +26,7 @@ InstaAutomate DM is a sophisticated Next.js application engineered to streamline
 
 ## ⚙️ Tech Stack
 [![My Skills](https://skillicons.dev/icons?i=nextjs%2Creact%2Ctypescript%2Ctailwindcss%2Cnodejs%2Credis%2Cr)](https://skillicons.dev)
-(insert tool response below this line)
+
 
 This project is built using a modern and robust tech stack:
 

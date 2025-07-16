@@ -1,16 +1,17 @@
-<div align="center" >
+
+<div align="center">
   <img src="https://firebasestorage.googleapis.com/v0/b/chatmedia786.appspot.com/o/images%2FBanner_skeleton.png?alt=media&token=0ba7eddb-7640-410c-9119-c40c743d9223" alt="Project Banner" width="800"/>
 </div>
+(insert tool response below this line)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
 
-[![My Skills](https://skillicons.dev/icons?i=nextjs%2Creact%2Ctypescript%2Ctailwindcss%2Cnodejs%2Credis%2Cc%2Cswift%2Cr)](https://skillicons.dev) 
-
-
-
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg?logo=next.js)
-
-## 📝 About InstaAutomate DM
+## About InstaAutomate DM
 
 InstaAutomate DM is a sophisticated Next.js application engineered to streamline and automate direct messaging on Instagram. Leveraging the power of Node.js and Redis for robust backend operations, it allows users to schedule and manage their Instagram DMs with precision and ease. The project features a modern, responsive user interface built with React and Tailwind CSS, all developed with the reliability and type-safety of TypeScript.
 
@@ -24,6 +25,8 @@ InstaAutomate DM is a sophisticated Next.js application engineered to streamline
 -   **Reliable Instagram Integration:** Seamless and secure interaction with Instagram's private API.
 
 ## ⚙️ Tech Stack
+[![My Skills](https://skillicons.dev/icons?i=nextjs%2Creact%2Ctypescript%2Ctailwindcss%2Cnodejs%2Credis%2Cr)](https://skillicons.dev)
+(insert tool response below this line)
 
 This project is built using a modern and robust tech stack:
 
@@ -131,9 +134,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Your Name/Team Name - [Your Website/Portfolio Link (Optional)]
 Project Link: [https://github.com/your-username/instaautomate_dm](https://github.com/your-username/instaautomate_dm)
 
-## 📈 GitHub Stats
+## 📊 GitHub Stats
 
 ![GitHub Stars](https://img.shields.io/github/stars/your-username/instaautomate_dm?style=social)
 ![GitHub Forks](https://img.shields.io/github/forks/your-username/instaautomate_dm?style=social)
 ![GitHub Watchers](https://img.shields.io/github/watchers/your-username/instaautomate_dm?style=social)
-
